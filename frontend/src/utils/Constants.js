@@ -1,0 +1,10 @@
+const Constants = {
+  NEW_POST: 'NEW_POST',
+  NEW_COMMENT: 'NEW_COMMENT',
+  NEW_USER: 'NEW_USER',
+  VOTE_UP: 'VOTE_UP',
+  VOTE_DOWN: 'VOTE_DOWN',
+  DELETE_POST: 'DELETE_POST',
+  DELETE_COMMENT: 'DELETE_COMMENT'
+}
+export default Constants
