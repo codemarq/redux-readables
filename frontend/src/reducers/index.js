@@ -1,18 +1,18 @@
-import C from '../utils/Constants'
+import { NEW_POST, NEW_COMMENT, NEW_USER, VOTE_UP, VOTE_DOWN, DELETE_POST, DELETE_COMMENT } from '../actions'
 
 const reducer = (state, action) => {
   const { id, timestamp, title, body, author, category, voteScore, deleted, parentDeleted, parentid } = action
 
   switch (action.type) {
-    case C.NEW_COMMENT:
+    case NEW_COMMENT:
       return state;
-    case C.NEW_POST:
+    case NEW_POST:
       return state;
-    case C.NEW_USER:
+    case NEW_USER:
       return state;
-    case C.VOTE_DOWN:
+    case VOTE_DOWN:
       return state;
-    case C.VOTE_UP:
+    case VOTE_UP:
       return {
         ...state,
         [id]: {
@@ -20,7 +20,7 @@ const reducer = (state, action) => {
           [voteScore]: voteScore +1
         }
       };
-    case C.DELETE_POST:
+    case DELETE_POST:
       return {
         ...state,
         [id]: {
@@ -28,7 +28,7 @@ const reducer = (state, action) => {
           [deleted]: true
         }
       };
-    case C.DELETE_COMMENT:
+    case DELETE_COMMENT:
       return {
         ...state,
         [id]: {

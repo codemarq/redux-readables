@@ -1,4 +1,10 @@
-import C from '../utils/Constants'
+export const NEW_POST = 'NEW_POST'
+export const NEW_COMMENT = 'NEW_COMMENT'
+export const NEW_USER = 'NEW_USER'
+export const VOTE_UP = 'VOTE_UP'
+export const VOTE_DOWN = 'VOTE_DOWN'
+export const DELETE_POST = 'DELETE_POST'
+export const DELETE_COMMENT = 'DELETE_COMMENT'
 
 export function newPost ({ timestamp, title, body, author, category }) {
   return {
