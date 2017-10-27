@@ -1,7 +1,17 @@
 import { NEW_POST, NEW_COMMENT, NEW_USER, VOTE_UP, VOTE_DOWN, DELETE_POST, DELETE_COMMENT } from '../actions'
 
+
+// const initialState = {
+//   posts: [],
+//   comments: []
+// }
+
 const reducer = (state, action) => {
-  const { id, timestamp, title, body, author, category, voteScore, deleted, parentDeleted, parentid } = action
+  const { 
+    id, 
+    voteScore, 
+    deleted, 
+  } = action
 
   switch (action.type) {
     case NEW_COMMENT:
@@ -17,7 +27,7 @@ const reducer = (state, action) => {
         ...state,
         [id]: {
           ...state[id],
-          [voteScore]: voteScore +1
+          [voteScore]: action.voteScore
         }
       };
     case DELETE_POST:
@@ -40,3 +50,5 @@ const reducer = (state, action) => {
       return state;
   }
 }
+
+export default reducer
