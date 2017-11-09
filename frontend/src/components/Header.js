@@ -1,5 +1,4 @@
 import React from 'react'
-import { Link } from 'react-router-dom'
 
 const Header = function ({ categories }) {
   if (categories.length === 0) {
@@ -13,13 +12,12 @@ const Header = function ({ categories }) {
           <div className='container'>
             <a href="#!" className="brand-logo">Post-it!</a>
             <ul className="right hide-on-med-and-down">
-              <li><Link to="/sortByCat" className='waves-effect waves light btn-large blue-grey darken-1'><i className="material-icons left">sort</i>{console.log(categories)} </Link></li>
-              <li><Link to="/create"><i className="material-icons right">add</i>Create a New Post</Link></li>
+              <li><a href="/sortByCat" className='waves-effect waves light btn-large blue-grey darken-1'><i className="material-icons left">sort</i>{console.log(categories)} </a></li>
+              <li><a href="/create"><i className="material-icons right">add</i>Create a New Post</a></li>
             </ul>
           </div>
         </div>
-      </nav>
-      
+      </nav>     
     </header>
   )
 }

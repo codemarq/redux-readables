@@ -3,15 +3,11 @@ import {
   DELETE_POST,
   NEW_COMMENT,
   DELETE_COMMENT,
-  VOTE_UP,
-  VOTE_DOWN,
+  // VOTE_UP,
+  // VOTE_DOWN,
 } from '../actions'
-import { combineReducers } from 'redux'
 
-// const initialState = {
-//   posts: [],
-//   comments: []
-// }
+import { combineReducers } from 'redux'
 
 const posts = (state = [], action) => {
   // const { 
@@ -55,28 +51,7 @@ const comments = (state = [], action) => {
     }
 }
 
-const vote = (state, action) => {
-  const { voteScore, id } = action;
-
-  switch (action.type) {
-    case VOTE_UP:
-      return state;
-      // return {
-      //   ...state,
-      //   [id]: {
-      //     ...state[id],
-      //     [voteScore]: action.voteScore
-      //   }
-      // };
-    case VOTE_DOWN:
-      return state;
-    default:
-      return state;
-    }
-}
-
 export default combineReducers({
   posts,
   comments,
-  // vote
 })
