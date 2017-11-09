@@ -1,6 +1,5 @@
 export const NEW_POST = 'NEW_POST'
 export const NEW_COMMENT = 'NEW_COMMENT'
-export const NEW_USER = 'NEW_USER'
 export const VOTE_UP = 'VOTE_UP'
 export const VOTE_DOWN = 'VOTE_DOWN'
 export const DELETE_POST = 'DELETE_POST'
@@ -24,13 +23,6 @@ export function newComment ({ parentId, body, author, timestamp }) {
     body,
     author,
     timestamp
-  }
-}
-
-export function newUser (author) {
-  return {
-    type: NEW_USER,
-    author
   }
 }
 
