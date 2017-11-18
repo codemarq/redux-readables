@@ -1,23 +1,27 @@
-import React, { Component } from 'react'
+import React from 'react'
+import { Link } from 'react-router-dom'
 
-class Header extends Component {
-
-  render () {
-    return (
-      <header>
-        <nav>
-          <div className="nav-wrapper blue darken-2">
-            <a href="#!" className="brand-logo">Readable</a>
+const Header = function ({ categories }) {
+  if (categories.length === 0) {
+    return <p>Unable to load Categories...</p>
+  }
+  
+  return (
+    <header>
+      <nav>
+        <div className="nav-wrapper blue-grey darken-2">
+          <div className='container'>
+            <a href="#!" className="brand-logo">Post-it!</a>
             <ul className="right hide-on-med-and-down">
-              <li><a href="sass.html"><i className="material-icons left">search</i>Link with Left Icon</a></li>
-              <li><a href="badges.html"><i className="material-icons right">view_module</i>Link with Right Icon</a></li>
+              <li><Link to="/sortByCat" className='waves-effect waves light btn-large blue-grey darken-1'><i className="material-icons left">sort</i>{console.log(categories)} </Link></li>
+              <li><Link to="/create"><i className="material-icons right">add</i>Create a New Post</Link></li>
             </ul>
           </div>
-        </nav>
-        
-      </header>
-    )
-  }
+        </div>
+      </nav>
+      
+    </header>
+  )
 }
 
 export default Header
