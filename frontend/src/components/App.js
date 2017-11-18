@@ -10,9 +10,16 @@ class App extends Component {
   render() {
     return (
       <div className='App'>
-        <p>{this.state.backend}</p>
-        <Header categories={this.state} />
-        <Post />
+        <Route exact path='/' render={() => (
+          <div>
+          <p>{this.state.backend}</p>
+            <Header 
+              categories={this.state}
+            />
+            <Post />
+            <div id="response-container"></div>
+          </div>
+        )}/>
       </div>
     );
   }
