@@ -46,6 +46,7 @@ class App extends Component {
               categories={this.state}
             />
             <Post />
+            <div id="response-container"></div>
           </div>
         )}/>
       </div>
