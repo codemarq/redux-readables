@@ -18,10 +18,10 @@ function requestError(e, part) {
 
 // GET methods
 export const getCategories = () =>
-  fetch(`${url}/categories`, {
-    headers: headers
-  }).then(res => console.log(res))
-    .catch(e=> requestError(e, 'getCategories'))
+fetch(`${url}/categories`, {
+  headers: headers
+}).then(res => console.log(res.json()))
+  .catch(e => requestError(e, 'getCategories'))
 
 export const getPosts = () => 
   fetch(`${url}/posts`, {
@@ -30,25 +30,25 @@ export const getPosts = () =>
     .catch(e => requestError(e, 'getPosts'))
 
 export const getPostsByCat = (category) => 
-  fetch(`${url}/:${category}/posts`, {
+  fetch(`${url}/${category}/posts`, {
     headers: headers
   }).then(res => console.log(res.json()))
     .catch(e => requestError(e, 'getPostsByCat'))
 
 export const getPostDetails = (id) =>
-  fetch(`${url}/posts/:${id}`, {
+  fetch(`${url}/posts/${id}`, {
     headers: headers
   }).then(res => console.log(res.json()))
     .catch(e => requestError(e, 'getPostDetails'))
 
 export const getComments = (id) =>
-  fetch(`${url}/posts/:${id}/comments`, {
+  fetch(`${url}/posts/${id}/comments`, {
     headers: headers
   }).then(res => console.log(res.json()))
     .catch(e => requestError(e, 'getComments'))
 
 export const getCommentDetails = (id) =>
-  fetch(`${url}/comments/:${id}`, {
+  fetch(`${url}/comments/${id}`, {
     headers: headers
   }).then(res => console.log(res.json()))
     .catch(e => requestError(e, 'getCommentDetails'))
@@ -84,7 +84,7 @@ export const newComment = (id, timestamp=Date.now(), body, author, parentID) =>
     .catch(e => requestError(e, 'newComment'))
 
 export const votePost = (id, vote) => 
-  fetch(`${url}/posts/:${id}`, {
+  fetch(`${url}/posts/${id}`, {
     headers: headers,
     method: 'POST',
     body: {
@@ -94,7 +94,7 @@ export const votePost = (id, vote) =>
     .catch(e => requestError(e, `votePost failed on ${vote}`))
 
 export const voteComment = (id, vote) => 
-  fetch(`${url}/comments/:${id}`, {
+  fetch(`${url}/comments/${id}`, {
     headers: headers,
     method: 'POST',
     body: {
@@ -105,7 +105,7 @@ export const voteComment = (id, vote) =>
 
 // PUT methods (for editing posts and comments)
 export const editPost = (id, title, body) => 
-  fetch(`${url}/posts/:${id}`, {
+  fetch(`${url}/posts/${id}`, {
     headers: headers,
     method: 'PUT',
     body: {
@@ -116,7 +116,7 @@ export const editPost = (id, title, body) =>
     .catch(e => requestError(e, `editPost title: ${title} and body: ${body}`))
 
 export const editComment = (id, timestamp, body) => 
-  fetch(`${url}/comments/:${id}`, {
+  fetch(`${url}/comments/${id}`, {
     headers: headers,
     method: 'PUT',
     body: {
@@ -128,16 +128,15 @@ export const editComment = (id, timestamp, body) =>
 
 // DELETE methods
 export const deletePost = (id) => 
-fetch(`${url}/posts/:${id}`, {
+fetch(`${url}/posts/${id}`, {
   headers: headers,
   method: 'DELETE',
 }).then(res => console.log(res.json()))
   .catch(e => requestError(e, `deletePost`))
 
 export const deleteComment = (id) => 
-  fetch(`${url}/comments/:${id}`, {
+  fetch(`${url}/comments/${id}`, {
     headers: headers,
     method: 'DELETE',
   }).then(res => console.log(res.json()))
     .catch(e => requestError(e, `deleteComment`))
-
