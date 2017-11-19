@@ -2,26 +2,34 @@ import React, { Component } from 'react'
 import { Route } from 'react-router-dom'
 import Header from './Header'
 import Post from './Post'
+import { getPosts, getCategories, getComments } from '../utils/api'
 
 class App extends Component {
   state = {
-    posts: []
+    posts: [],
     // commentModalOpen: false,
     // posts: [],
     // comments: [],
     // user: {},
     // loadingComment: false,
+    categories: [],
+    comments: []
   }
 
   
   componentDidMount() {
-    const { store } = this.props
-
-    store.subscribe(() => {
-      this.setState(() => ({
-        posts: store.getState()
-      }))
+    getPosts().then(posts => {
+      this.setState(() => ({ posts: posts }))
     })
+
+    getCategories().then(categories => this.setState(() => ({ categories: categories })))
+
+    getComments().then(comments => this.setState(() => ({comments: comments})))
+
+    // const { store } = this.props
+
+    // store.subscribe(() => {
+    // })
     // const url = `${process.env.REACT_APP_BACKEND}/categories`;
     // const auth = btoa('username:password');
     // console.log('fetching from url', url);
@@ -41,11 +49,8 @@ class App extends Component {
       <div className='App'>
         <Route exact path='/' render={() => (
           <div>
-          <p>{this.state.backend}</p>
-            <Header 
-              categories={this.state}
-            />
-            <Post />
+            <Header categories={this.state.categories}/>
+            <Post posts={this.state.posts}/>
             <div id="response-container"></div>
           </div>
         )}/>
