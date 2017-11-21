@@ -12,8 +12,8 @@ class Post extends Component {
               <div className="card horizontal blue-grey darken-2">
                 <div className="card-stacked">
                   <div className="card-content white-text">
-                    <h3 className="header white-text">{post.title}</h3>
-                    <h4 className='header white-text'>By: {post.author}</h4>
+                    <h5 className="white-text">{post.title}</h5>
+                    <h6 className='white-text'>By: {post.author}</h6>
                     <p>{post.body}</p>
                   </div>
                   <div className="card-action white-text">

@@ -1,19 +1,19 @@
 import React, { Component } from 'react'
-import { Route } from 'react-router-dom'
 import Header from './Header'
 import Post from './Post'
 import { getPosts, getCategories, getComments } from '../utils/api'
+import Modal from 'react-modal'
 
 class App extends Component {
   state = {
     posts: [],
-    // commentModalOpen: false,
-    // posts: [],
-    // comments: [],
-    // user: {},
-    // loadingComment: false,
     categories: [],
-    comments: []
+    comments: [],
+    newCommentModalOpen: false,
+    loadingComment: false,
+    editCommentModalOpen: false,
+    newPostModalOpen: true,
+    editPostModalOpen: false,
   }
 
   
@@ -25,35 +25,47 @@ class App extends Component {
     getCategories().then(categories => this.setState(() => ({ categories: categories })))
 
     getComments().then(comments => this.setState(() => ({comments: comments})))
-
-    // const { store } = this.props
-
-    // store.subscribe(() => {
-    // })
-    // const url = `${process.env.REACT_APP_BACKEND}/categories`;
-    // const auth = btoa('username:password');
-    // console.log('fetching from url', url);
-    // fetch(url, { headers: { 
-    //               'Authorization': 'Basic ' + auth 
-    //             },
-    //              credentials: 'omit' } )
-    //   .then( (res) => { res.json() })
-    //   .then((data) => {
-    //     this.setState({backend:data});
-    //   });
   }
 
-
+  closeNewPostModal = () => { this.setState(() => ({ newPostModalOpen: false, })) }
+  closeEditPostModal = () => { this.setState(() => ({ editPostModalOpen: false, })) }
+  closeNewCommentModal = () => { this.setState(() => ({ newCommentModalOpen: false, })) }
+  closeEditCommentModal = () => { this.setState(() => ({ editCommentModalOpen: false, })) }
+  
   render() {
+    const { newPostModalOpen } = this.state
     return (
       <div className='App'>
-        <Route exact path='/' render={() => (
-          <div>
-            <Header categories={this.state.categories}/>
-            <Post posts={this.state.posts}/>
-            <div id="response-container"></div>
+        <div>
+          <Header categories={this.state.categories}/>
+          <Post posts={this.state.posts}/>
+          <div id="response-container"></div>
+        </div>
+        <Modal
+          id="newPostModal"
+          className="modal"
+          overlayClassName="overlay"
+          isOpen={ newPostModalOpen }
+          onRequestClose={ this.closeNewPostModal }
+          contentLabel="Modal"
+        >
+          <div className="row">
+            <form className="col s12">
+              <div className="row">
+                <div className="input-field col s12">
+                  <input placeholder="Placeholder" id="user_name" type="text" className="validate"/>
+                  <label htmlFor="user_name">User Name</label>
+                </div>
+              </div>
+              <div className="row">
+                <div className="input-field col s12">
+                  <input disabled value="I am not editable" id="disabled" type="text" className="validate"/>
+                  <label htmlFor="disabled">Disabled</label>
+                </div>
+              </div>
+            </form>
           </div>
-        )}/>
+        </Modal>
       </div>
     );
   }
