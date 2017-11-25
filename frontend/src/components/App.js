@@ -1,5 +1,5 @@
 import React, { Component } from 'react'
-import Header from './Header'
+// import Header from './Header'
 import Post from './Post'
 import { getPosts, getCategories, getComments } from '../utils/api'
 import Modal from 'react-modal'
@@ -12,44 +12,58 @@ class App extends Component {
     newCommentModalOpen: false,
     loadingComment: false,
     editCommentModalOpen: false,
-    newPostModalOpen: true,
+    newPostModalOpen: false,
     editPostModalOpen: false,
   }
 
   
   componentDidMount() {
-    getPosts().then(posts => {
-      this.setState(() => ({ posts: posts }))
-    })
+    getPosts().then(posts => { this.setState(() => ({ posts: posts })) })
 
     getCategories().then(categories => this.setState(() => ({ categories: categories })))
 
     getComments().then(comments => this.setState(() => ({comments: comments})))
   }
 
-  closeNewPostModal = () => { this.setState(() => ({ newPostModalOpen: false, })) }
-  closeEditPostModal = () => { this.setState(() => ({ editPostModalOpen: false, })) }
-  closeNewCommentModal = () => { this.setState(() => ({ newCommentModalOpen: false, })) }
-  closeEditCommentModal = () => { this.setState(() => ({ editCommentModalOpen: false, })) }
+  openNewPost = () => { this.setState(() => ({ newPostModalOpen: true })) }
+  closeNewPost = () => { this.setState(() => ({ newPostModalOpen: false, })) }
+  closeEditPost = () => { this.setState(() => ({ editPostModalOpen: false, })) }
+  closeNewComment = () => { this.setState(() => ({ newCommentModalOpen: false, })) }
+  closeEditComment = () => { this.setState(() => ({ editCommentModalOpen: false, })) }
   
   render() {
     const { newPostModalOpen } = this.state
     return (
       <div className='App'>
-        <div>
-          <Header categories={this.state.categories}/>
-          <Post posts={this.state.posts}/>
-          <div id="response-container"></div>
-        </div>
+        <header className="header">
+          <nav>
+            <div className="nav-wrapper blue-grey darken-2">
+              <div className='container'>
+                <h1>Post-it!</h1>
+                <ul className="right hide-on-med-and-down">
+                  <li><button className='waves-effect waves light btn-large blue-grey darken-1'>Sort by Category<i className="material-icons left">sort</i></button></li>
+                  <li><button 
+                    className='modal-trigger waves-effect waves light btn-large blue-grey darken-1'
+                    onClick={this.openNewPost}
+                    data-target='newPostModal'
+                    ><i className="material-icons right">add</i>Create a New Post</button></li>
+                </ul>
+              </div>
+            </div>
+          </nav>
+        </header>
+        <Post posts={this.state.posts}/>
+        <div id="response-container"></div>
+
         <Modal
           id="newPostModal"
           className="modal"
-          overlayClassName="overlay"
+          overlayClassName="modal-overlay"
           isOpen={ newPostModalOpen }
-          onRequestClose={ this.closeNewPostModal }
+          onRequestClose={ this.closeNewPost }
           contentLabel="Modal"
         >
-          <div className="row">
+          <div className="row modal-content">
             <form className="col s12">
               <div className="row">
                 <div className="input-field col s12">

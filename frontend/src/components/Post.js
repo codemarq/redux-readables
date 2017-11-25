@@ -12,14 +12,14 @@ class Post extends Component {
               <div className="card horizontal blue-grey darken-2">
                 <div className="card-stacked">
                   <div className="card-content white-text">
-                    <h5 className="white-text">{post.title}</h5>
-                    <h6 className='white-text'>By: {post.author}</h6>
+                    <h2 className="white-text">{post.title}</h2>
+                    <h3 className='white-text'>By: {post.author}</h3>
                     <p>{post.body}</p>
                   </div>
                   <div className="card-action white-text">
                     <button className='btn blue-grey darken-1'><i className='material-icons'>comment</i></button>
                     <button className='btn blue-grey darken-1'><i className='material-icons'>thumb_up</i></button>
-                     | Likes: {post.voteScore}  |
+                     <span> Likes: {post.voteScore}</span>
                     <button className='btn blue-grey darken-1'><i className='material-icons'>thumb_down</i></button>
                   </div>
                 </div>
