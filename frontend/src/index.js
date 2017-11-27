@@ -1,6 +1,6 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
-import { BrowserRouter } from 'react-router-dom';
+// import { BrowserRouter } from 'react-router-dom';
 import './index.css';
 import App from './components/App';
 import registerServiceWorker from './registerServiceWorker';
@@ -14,6 +14,6 @@ const store = createStore(
 console.log(store)
 
 ReactDOM.render(
-  <BrowserRouter><App store={store}/></BrowserRouter>,
+  <App store={store}/>,
   document.getElementById('root'));
 registerServiceWorker();
