@@ -1,33 +1,31 @@
 import React from 'react'
+import { Glyphicon, Button, ButtonGroup, ButtonToolbar, PanelGroup, Panel } from 'react-bootstrap/lib'
 
 const Post = (props) => {
   const { posts, openNewComment } = props
   
   return (
-    <div className='container'>
+    <PanelGroup>
     { posts.map(post => (
-        <div className='row' key={post.id}>
-          <div className="col s12">
-            <div className="card horizontal blue-grey darken-2">
-              <div className="card-stacked">
-                <div className="card-content white-text">
-                  <h2 className="white-text">{post.title}</h2>
-                  <h3 className='white-text'>By: {post.author}</h3>
-                  <p>{post.body}</p>
-                </div>
-                <div className="card-action white-text">
-                  <button className='btn blue-grey darken-1' onClick={openNewComment}><i className='material-icons'>comment</i></button>
-                  <button className='btn blue-grey darken-1'><i className='material-icons'>thumb_up</i></button>
-                    <span> Likes: {post.voteScore}</span>
-                  <button className='btn blue-grey darken-1'><i className='material-icons'>thumb_down</i></button>
-                </div>
-              </div>
-            </div>
-          </div>
-          </div>
+      <Panel 
+        key={post.id} 
+        bsStyle='primary'
+        header={<h2>{post.title}</h2>}
+        footer={
+          <ButtonToolbar>
+          <Button onClick={openNewComment}><Glyphicon glyph="comment"/></Button>
+          <ButtonGroup>
+          <Button><Glyphicon glyph="thumbs-up"/></Button>
+          <Button disabled><span>{post.voteScore}</span></Button>
+          <Button ><Glyphicon glyph='thumbs-down'/></Button>
+          </ButtonGroup>
+          </ButtonToolbar>
+        }>
+        <p>By: {post.author}</p>
+        <p>{post.body}</p>
+      </Panel>
       ))}
-
-    </div>
+    </PanelGroup>
   )
 }
 

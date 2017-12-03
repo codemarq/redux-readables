@@ -14,7 +14,7 @@ const NewPostForm = (props) => {
           <FieldGroup
           id="username"
           type="text"
-          label="username"
+          label="Username"
           placeholder="Enter any username"
           />
           <FieldGroup
@@ -31,13 +31,14 @@ const NewPostForm = (props) => {
             </FormControl>
           </FormGroup>
           <FormGroup controlId="formControlsTextarea">
-            <ControlLabel>Textarea</ControlLabel>
+            <ControlLabel>Post</ControlLabel>
             <FormControl componentClass="textarea" placeholder="textarea" />
           </FormGroup>
         </form>
       </Modal.Body>
       <Modal.Footer>
-        <Button onClick={closeNewPost}>Close</Button>
+        <Button onClick={this.closeNewPost}>Cancel</Button>
+        <Button>Post</Button>
       </Modal.Footer>
     </div>
   )

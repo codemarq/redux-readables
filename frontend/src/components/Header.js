@@ -1,5 +1,5 @@
 import React from 'react'
-import { Button } from 'react-bootstrap/lib'
+import { Button, Navbar, Nav, NavItem, NavDropdown, MenuItem, Glyphicon, ButtonToolbar } from 'react-bootstrap/lib'
 // import { Link } from 'react-router-dom'
 
 const Header = (props) => {
@@ -9,23 +9,28 @@ const Header = (props) => {
   }
 
   return (
-    <nav>
-      <div className="nav-wrapper blue-grey darken-2">
-        <div>
-          <h1>Post-it!</h1>
-          <ul className="right hide-on-med-and-down">
-            <li><Button className='waves-effect waves light btn-large blue-grey darken-1'>Sort by Category<i className="material-icons left">sort</i></Button></li>
-            <li>
-            <Button 
-              className='modal-trigger waves-effect waves light btn-large blue-grey darken-1'
-              onClick={openNewPost}
-              data-target='newPostModal'
-              >
-              <i className="material-icons right">add</i>Create a New Post</Button></li>
-          </ul>
-        </div>
-      </div>
-    </nav>
+    <Navbar collapseOnSelect>
+      <Navbar.Header>
+        <Navbar.Brand>
+          Post it!
+        </Navbar.Brand>
+        <Navbar.Toggle />
+      </Navbar.Header>
+      <Navbar.Collapse>
+        <Nav>
+          <NavDropdown eventKey={1} title="Sort by Category" id="category-dropdown">
+            <MenuItem eventKey={1.1}>React</MenuItem>
+            <MenuItem eventKey={1.2}>Redux</MenuItem>
+            <MenuItem eventKey={1.3}>Udacity</MenuItem>
+          </NavDropdown>
+          <NavItem>
+            <ButtonToolbar>
+              <Button onClick={openNewPost}><Glyphicon glyph='plus'/> New Post</Button>
+            </ButtonToolbar>
+          </NavItem>
+        </Nav>
+      </Navbar.Collapse>
+    </Navbar>
   )
 }
 
