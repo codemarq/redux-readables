@@ -1,3 +1,5 @@
+import uuid from 'uuid/v1'
+
 export const NEW_POST = 'NEW_POST'
 export const NEW_COMMENT = 'NEW_COMMENT'
 export const VOTE_UP = 'VOTE_UP'
@@ -5,9 +7,12 @@ export const VOTE_DOWN = 'VOTE_DOWN'
 export const DELETE_POST = 'DELETE_POST'
 export const DELETE_COMMENT = 'DELETE_COMMENT'
 
-export function newPost ({ timestamp, title, body, author, category }) {
+
+
+export function newPost ({ id = uuid(), timestamp = Date.now(), title, body, author, category }) {
   return {
     type: NEW_POST,
+    id,
     timestamp,
     title,
     body,
@@ -16,9 +21,10 @@ export function newPost ({ timestamp, title, body, author, category }) {
   }
 }
 
-export function newComment ({ parentId, body, author, timestamp }) {
+export function newComment ({ id = uuid(), parentId, body, author, timestamp }) {
   return {
     type: NEW_COMMENT,
+    id,
     parentId,
     body,
     author,
@@ -26,30 +32,30 @@ export function newComment ({ parentId, body, author, timestamp }) {
   }
 }
 
-export function voteUp (post) {
+export function voteUp (id) {
   return {
     type: VOTE_UP,
-    post
+    id
   }
 }
 
-export function voteDown (post) {
+export function voteDown (id) {
   return {
     type: VOTE_DOWN,
-    post
+    id
   }
 }
 
-export function deletePost (post) {
+export function deletePost (id) {
   return {
     type: DELETE_POST,
-    post
+    id
   }
 }
 
-export function deleteComment (comment) {
+export function deleteComment (id) {
   return {
     type: DELETE_COMMENT,
-    comment
+    id
   }
 }

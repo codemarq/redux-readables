@@ -12,16 +12,18 @@ const NewPostForm = (props) => {
       <Modal.Body>
         <form>
           <FieldGroup
-          id="username"
-          type="text"
-          label="Username"
-          placeholder="Enter any username"
+            id="username"
+            type="text"
+            label="Username"
+            placeholder="Enter any username"
+            value='author'
           />
           <FieldGroup
-          id="Title"
-          type="text"
-          label="Title"
-          placeholder="Title"
+            id="Title"
+            type="text"
+            label="Title"
+            placeholder="Title"
+            value='title'
           />
           <FormGroup controlId="formControlsSelect">
             <ControlLabel>Please select a Category</ControlLabel>
