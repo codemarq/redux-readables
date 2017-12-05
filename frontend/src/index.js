@@ -6,7 +6,7 @@ import App from './components/App'
 import registerServiceWorker from './registerServiceWorker'
 import { createStore, applyMiddleware, compose } from 'redux'
 import reducer from './reducers'
-// import { Provider } from 'react-redux'
+import { Provider } from 'react-redux'
 
 const logger = store => next => action => {
   console.group(action.type)
@@ -21,12 +21,12 @@ const composeEnhancers = window.__REDUX_DEVTOOLS_EXTENSION_COMPOSE__ || compose;
 
 const store = createStore(
   reducer,
-  composeEnhancers(
-    applyMiddleware(logger)
-  )
-);
+  composeEnhancers(applyMiddleware(logger))
+)
 
 ReactDOM.render(
-  <App store={store}/>,
-  document.getElementById('root'));
-registerServiceWorker();
+  <Provider store={store}><App /></Provider>,
+  document.getElementById('root')
+)
+
+registerServiceWorker()

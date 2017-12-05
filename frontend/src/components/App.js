@@ -1,10 +1,11 @@
 import React, { Component } from 'react'
+import { connect } from 'react-redux'
+import { Modal, FormControl, FormGroup, ControlLabel, Button } from 'react-bootstrap'
 import Header from './Header'
 import Post from './Post'
 // import NewPostForm from './NewPostForm'
 // import NewComment from './NewComment'
 import { getPosts, getCategories, getComments } from '../utils/api'
-import { Modal, FormControl, FormGroup, ControlLabel, Button } from 'react-bootstrap'
 import { FieldGroup } from '../utils/helper'
 
 class App extends Component {
@@ -36,7 +37,8 @@ class App extends Component {
   
   render() {
     const { newPostModalOpen, newCommentModalOpen, posts, categories } = this.state
-
+    console.log('Props', this.props)
+    console.log('State: ', this.state)
     return (
       <div className='App container'>
         <Header openNewPost={this.openNewPost} categories={categories}/>
@@ -123,4 +125,10 @@ class App extends Component {
   }
 }
 
-export default App;
+function mapStateToProps (reducer) {
+  return {
+    reducer
+  }
+}
+
+export default connect(mapStateToProps)(App);
