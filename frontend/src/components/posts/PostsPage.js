@@ -1,5 +1,6 @@
 import React, { Component, PropTypes } from 'react'
 import PostList from './PostList'
+import { connect } from 'react-redux'
 
 class PostsPage extends Component {
   constructor (props, context) {
@@ -28,4 +29,10 @@ PostsPage.propTypes = {
   posts: PropTypes.array.isRequired
 }
 
-export default PostsPage
+const mapStateToProps = (state) => {
+  return {
+    posts: state.posts
+  }
+}
+
+export default connect(mapStateToProps)(PostsPage)
