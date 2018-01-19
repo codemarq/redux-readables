@@ -1,19 +1,21 @@
-import React from 'react';
-import ReactDOM from 'react-dom';
-// import { BrowserRouter } from 'react-router-dom';
-import './index.css';
-import App from './components/App';
-import registerServiceWorker from './registerServiceWorker';
-import { createStore } from 'redux';
-import reducer from './reducers';
+import 'babel-polyfill'
+import React from 'react'
+import { render } from 'react-dom'
+import { Provider } from 'react-redux'
+import { Router, browserHistory } from 'react-router'
+import configureStore from './store/configureStore'
+import routes from './routes'
+import './styles/styles.css'
+import '../node_modules/bootstrap/dist/css/bootstrap.min.css'
+import '../node_modules/toastr/build/toastr.min.css'
+import { loadPosts } from './actions/postActions';
 
-const store = createStore(
-  reducer,
-  window.__REDUX_DEVTOOLS_EXTENSION__ && window.__REDUX_DEVTOOLS_EXTENSION__()
-);
-console.log(store)
+const store = configureStore()
+store.dispatch(loadPosts())
 
-ReactDOM.render(
-  <App store={store}/>,
-  document.getElementById('root'));
-registerServiceWorker();
+render(
+  <Provider store={store}>
+    <Router history={browserHistory} routes={routes} />
+  </Provider>,
+  document.getElementById('app')
+)

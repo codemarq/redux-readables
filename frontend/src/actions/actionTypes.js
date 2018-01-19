@@ -1,0 +1,9 @@
+// initial state
+export const LOAD_POSTS_SUCCESS = 'LOAD_POSTS_SUCCESS'
+export const LOAD_COMMENTS_SUCCESS = 'LOAD_COMMENTS_SUCCESS'
+// post actions
+export const CREATE_POST_SUCCESS = 'CREATE_POST_SUCCESS'
+export const UPDATE_POST_SUCCESS = 'UPDATE_POST_SUCCESS'
+// ajax
+export const BEGIN_AJAX_CALL = 'BEGIN_AJAX_CALL'
+export const AJAX_CALL_ERROR = 'AJAX_CALL_ERROR'

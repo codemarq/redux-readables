@@ -1,5 +1,5 @@
-const url = "http://localhost:3001";
-const responseContainer = document.querySelector('#response-container');
+const url = "http://localhost:3001"
+const responseContainer = document.querySelector('#response-container')
 
 let token = localStorage.token
 if (!token)
@@ -41,18 +41,6 @@ export const getPostDetails = (id) =>
   }).then(res => res.json())
     .catch(e => requestError(e, 'getPostDetails'))
 
-export const getComments = (id) =>
-  fetch(`${url}/posts/${id}/comments`, {
-    headers: headers
-  }).then(res => res.json())
-    .catch(e => requestError(e, 'getComments'))
-
-export const getCommentDetails = (id) =>
-  fetch(`${url}/comments/${id}`, {
-    headers: headers
-  }).then(res => res.json())
-    .catch(e => requestError(e, 'getCommentDetails'))
-
 // POST methods
 export const newPost = (id, timestamp=Date.now(),title, body, author, category) => 
   fetch(`${url}/posts`, {
@@ -68,20 +56,6 @@ export const newPost = (id, timestamp=Date.now(),title, body, author, category) 
     }
   }).then(res => res.json())
     .catch(e => requestError(e, 'newPost'))
-
-export const newComment = (id, timestamp=Date.now(), body, author, parentID) => 
-  fetch(`${url}/posts`, {
-    headers: headers,
-    method: 'POST',
-    body: {
-      id: id,
-      timestamp: timestamp,
-      body: body,
-      author: author,
-      parentID: parentID
-    }
-  }).then(res => res.json())
-    .catch(e => requestError(e, 'newComment'))
 
 export const votePost = (id, vote) => 
   fetch(`${url}/posts/${id}`, {
@@ -115,28 +89,10 @@ export const editPost = (id, title, body) =>
   }).then(res => res.json())
     .catch(e => requestError(e, `editPost title: ${title} and body: ${body}`))
 
-export const editComment = (id, timestamp, body) => 
-  fetch(`${url}/comments/${id}`, {
-    headers: headers,
-    method: 'PUT',
-    body: {
-      timestamp: timestamp,
-      body: body
-    }
-  }).then(res => res.json())
-    .catch(e => requestError(e, `editComment timestamp: ${timestamp} and body: ${body}`))
-
 // DELETE methods
 export const deletePost = (id) => 
 fetch(`${url}/posts/${id}`, {
   headers: headers,
-  method: 'DELETE',
+  method: 'DELETE'
 }).then(res => res.json())
   .catch(e => requestError(e, `deletePost`))
-
-export const deleteComment = (id) => 
-  fetch(`${url}/comments/${id}`, {
-    headers: headers,
-    method: 'DELETE',
-  }).then(res => res.json())
-    .catch(e => requestError(e, `deleteComment`))
