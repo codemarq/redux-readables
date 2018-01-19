@@ -58,6 +58,6 @@ export const editComment = (id, timestamp, body) =>
 export const deleteComment = (id) => 
   fetch(`${url}/comments/${id}`, {
     headers: headers,
-    method: 'DELETE',
+    method: 'DELETE'
   }).then(res => res.json())
     .catch(e => requestError(e, `deleteComment`))

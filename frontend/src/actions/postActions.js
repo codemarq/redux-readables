@@ -1,4 +1,5 @@
 import * as types from './actionTypes'
+import * as postsApi from '../api/postsApi'
 
 export const loadPostsSuccess = (posts) => {
   return {
@@ -18,5 +19,15 @@ export const updatePostSuccess = (post) => {
   return {
     type: types.UPDATE_POST_SUCCESS,
     post
+  }
+}
+
+export const loadPosts =  () => {
+  return (dispatch) => {
+    return postsApi.getPosts().then(posts => {
+      dispatch(loadPostsSuccess(posts))
+    }).catch(error => {
+      throw(error)
+    })
   }
 }

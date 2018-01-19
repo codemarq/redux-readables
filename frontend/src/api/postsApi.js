@@ -93,6 +93,6 @@ export const editPost = (id, title, body) =>
 export const deletePost = (id) => 
 fetch(`${url}/posts/${id}`, {
   headers: headers,
-  method: 'DELETE',
+  method: 'DELETE'
 }).then(res => res.json())
   .catch(e => requestError(e, `deletePost`))

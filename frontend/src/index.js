@@ -8,9 +8,10 @@ import routes from './routes'
 import './styles/styles.css'
 import '../node_modules/bootstrap/dist/css/bootstrap.min.css'
 import '../node_modules/toastr/build/toastr.min.css'
+import { loadPosts } from './actions/postActions';
 
 const store = configureStore()
-store.dispatch()
+store.dispatch(loadPosts())
 
 render(
   <Provider store={store}>
