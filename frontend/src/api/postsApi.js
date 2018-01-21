@@ -18,10 +18,10 @@ function requestError(e, part) {
 
 // GET methods
 export const getCategories = () =>
-fetch(`${url}/categories`, {
-  headers: headers
-}).then(res => res.json())
-  .catch(e => requestError(e, 'getCategories'))
+  fetch(`${url}/categories`, {
+    headers: headers
+  }).then(res => res.json())
+    .catch(e => requestError(e, 'getCategories'))
 
 export const getPosts = () => 
   fetch(`${url}/posts`, {

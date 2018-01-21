@@ -1,31 +1,39 @@
-import React, { PropTypes } from 'react'
+import React from 'react'
+import PropTypes from 'prop-types'
 // import { Link } from 'react-router'
 import timestampFormat from '../../utils/timestampFormat'
+// import FaCommentsO from 'react-icons/lib/fa/coments-o'
+// import FaCommentsO from 'react-icons/lib/fa/coments-o'
 
 const PostListRow = ({post}) => {
   return (
-    <li className="list-group-item">
-      <div className="heading">
-        <h3 className="title">{post.title}</h3>
+    <li className="list-group-item card row">
+      <div className="card-body">
+        <div className="col-4">
+          <h5 className="card-subtitle mb-2 text-muted right">
+            <p>{post.author}</p>
+            <p>{timestampFormat(post.timestamp)}</p>
+          </h5>
+        </div>
+        <div className="col-8">     
+          <h4 className="card-title">{post.title}</h4>
+          <div className="btn-group" role="group" aria-label="vote buttons group">
+            <button type="button" className="btn btn-secondary" aria-label="thumbs-up, to vote up this post">
+             Vote Up
+            </button>
+            <button type="button" className="btn btn-secondary disabled" aria-label="displayed votescore">
+              <span>{post.voteScore}</span>
+            </button>
+            <button type="button" className="btn btn-secondary" aria-label="thumbs-down, to vote down this post">
+              Vote Down
+            </button>
+          </div>
+          <p className="card-text">{post.body}</p>
+
       </div>
-      <div className="body">
-        {post.body}
-      </div>
-      <div className="footer">{post.author} at {timestampFormat(post.timestamp)}</div>
-  {/* clearly the below can be abstracted out to a separate component, also need to fix the overall look.*/}
-      <div className="btn-group" role="group" aria-label="vote buttons group">
-        <button type="button" className="btn btn-success" aria-label="thumbs-up, to vote up this post">
-          <span className="glyphicon glyphicon-thumbs-up" aria-hidden="true"></span>
-        </button>
-        <button type="button" className="btn btn-primary disabled" aria-label="displayed votescore">
-          <span>{post.voteScore}</span>
-        </button>
-        <button type="button" className="btn btn-danger" aria-label="thumbs-down, to vote down this post">
-          <span className="glyphicon glyphicon-thumbs-down" aria-hidden="true"></span>
-        </button>
-        <button type="button" className="btn btn-primary" aria-label="comments">
-          <span className="glyphicon glyphicon-comment" aria-hidden="true"></span>
-        </button>
+          <button type="button" className="btn btn-outline-primary" aria-label="view all comments">
+            <span>View all Comments</span>
+          </button>
       </div>
     </li>
   )
