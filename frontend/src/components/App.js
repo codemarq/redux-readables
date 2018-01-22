@@ -1,5 +1,6 @@
 // this is the main component that handles the App template used on every page
-import React, { Component, PropTypes } from 'react'
+import React, { Component } from 'react'
+import PropTypes from 'prop-types'
 import Header from './common/Header'
 
 class App extends Component {

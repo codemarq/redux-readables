@@ -1,4 +1,4 @@
-// eslint-disable no-unused-vars
+/* eslint-disable no-unused-vars */
 import colors from 'colors'
 
 /* eslint-disable no-console */
