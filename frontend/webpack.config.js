@@ -2,20 +2,20 @@ import webpack from 'webpack'
 import path from 'path'
 
 export default {
-  debug: true,
-  devtool: 'inline-source-map',
-  noInfo: false,
   entry: [
     'eventsource-polyfill',
     'webpack-hot-middleware/client?reload=true',
-    path.resolve(__dirname, 'src/index')
+    path.resolve(__dirname, './src/index.js')
   ],
-  target: 'web',
   output: {
-    path: __dirname + '/dist',
+    path: path.resolve(__dirname, 'dist'),
     publicPath: '/',
     filename: 'bundle.js'
   },
+  debug: true,
+  devtool: 'inline-source-map',
+  noInfo: false,  
+  target: 'web',
   devServer: {
     contentBase: path.resolve(__dirname, 'src')
   },
@@ -24,13 +24,13 @@ export default {
     new webpack.NoErrorsPlugin()
   ],
   module: {
-    loaders: [
-      {test: /\.js$/, include: path.join(__dirname, 'src'), loaders: ['babel']},
-      {test: /(\.css)$/, loaders: ['style', 'css']},
-      {test: /\.eot(\?v=\d+\.\d+\.\d+)?$/, loader: 'file'},
-      {test: /\.(woff|woff2)$/, loader: 'url?prefix=font/&limit=5000'},
-      {test: /\.ttf(\?v=\d+\.\d+\.\d+)?$/, loader: 'url?limit=10000&mimetype=application/octet-stream'},
-      {test: /\.svg(\?v=\d+\.\d+\.\d+)?$/, loader: 'url?limit=10000&mimetype=image/svg+xml'}
+    rules: [
+      {test: /\.js$/, include: path.join(__dirname, 'src'), use: [{loader:'babel'}]},
+      {test: /(\.css)$/, use: ['style', 'css']},
+      {test: /\.eot(\?v=\d+\.\d+\.\d+)?$/, use: {loader: 'file'}},
+      {test: /\.(woff|woff2)$/, use: {loader: 'url?prefix=font/&limit=5000'}},
+      {test: /\.ttf(\?v=\d+\.\d+\.\d+)?$/, use: {loader: 'url?limit=10000&mimetype=application/octet-stream'}},
+      {test: /\.svg(\?v=\d+\.\d+\.\d+)?$/, use: {loader: 'url?limit=10000&mimetype=image/svg+xml'}}
     ]
   }
 }
